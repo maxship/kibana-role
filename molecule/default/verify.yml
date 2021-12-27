@@ -2,9 +2,18 @@
 # This is an example playbook to execute Ansible tests.
 
 - name: Verify
-  hosts: all
+  hosts: kibana
   gather_facts: false
   tasks:
-  - name: Verify Kibana http
-    uri:
-      url: http://localhost:5601/
+  - name: Wait for Kibana port is listening
+    wait_for:
+      port: 5601
+      state: started
+      timeout: 60
+      msg: "Port 5601 wasn't opened"
+  - name: Wait for Kibana log file created
+    wait_for:
+      path: /var/lib/kibana/
+      state: present
+      timeout: 60
+      msg: "Kibana log file wasn't created"
