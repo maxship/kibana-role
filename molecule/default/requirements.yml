@@ -1,5 +1,5 @@
 roles:
-  - src: git@github.com:netology-code/mnt-homeworks-ansible.git
+  - src: git@github.com:maxship/mnt-homeworks-ansible.git
     scm: git
-    version: "2.0.3"
+    version: "2.0.4"
     name: elasticsearch-role
